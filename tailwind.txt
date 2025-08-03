@@ -1,0 +1,236 @@
+    # Tailwind CSS Classes Reference
+
+    ## Layout
+    container
+    box-border
+    box-content
+    block
+    inline-block
+    inline
+    flex
+    inline-flex
+    grid
+    hidden
+    overflow-auto
+    overflow-hidden
+    overflow-visible
+    overflow-scroll
+    float-right
+    float-left
+    clear-left
+    clear-right
+    clear-both
+    object-cover
+    object-contain
+
+    ## Flexbox & Grid
+    flex-row
+    flex-col
+    flex-wrap
+    flex-nowrap
+    items-center
+    items-start
+    items-end
+    justify-center
+    justify-between
+    justify-around
+    justify-evenly
+    gap-1
+    gap-2
+    gap-4
+    gap-8
+    col-span-1
+    col-span-2
+    col-span-3
+    row-span-1
+    row-span-2
+
+    ## Spacing
+    m-0
+    m-1
+    m-2
+    m-4
+    m-8
+    mx-auto
+    my-2
+    mt-4
+    mb-4
+    ml-2
+    mr-2
+    p-0
+    p-1
+    p-2
+    p-4
+    px-4
+    py-2
+    pt-4
+    pb-4
+    pl-2
+    pr-2
+    space-x-2
+    space-y-2
+
+    ## Sizing
+    w-0
+    w-1
+    w-4
+    w-8
+    w-16
+    w-32
+    w-full
+    w-screen
+    min-w-full
+    max-w-xs
+    max-w-sm
+    max-w-md
+    max-w-lg
+    h-0
+    h-1
+    h-4
+    h-8
+    h-16
+    h-32
+    h-full
+    h-screen
+    min-h-full
+    max-h-32
+    max-h-full
+
+    ## Typography
+    font-sans
+    font-serif
+    font-mono
+    font-light
+    font-normal
+    font-medium
+    font-semibold
+    font-bold
+    text-xs
+    text-sm
+    text-base
+    text-lg
+    text-xl
+    text-2xl
+    text-4xl
+    text-6xl
+    text-left
+    text-center
+    text-right
+    text-justify
+    uppercase
+    lowercase
+    capitalize
+    italic
+    not-italic
+    underline
+    line-through
+    tracking-tight
+    tracking-wide
+    leading-none
+    leading-tight
+    leading-relaxed
+
+    ## Colors (examples)
+    bg-white
+    bg-gray-100
+    bg-gray-500
+    bg-black
+    bg-blue-500
+    bg-red-500
+    bg-green-500
+    bg-yellow-500
+    bg-indigo-500
+    bg-pink-500
+    text-white
+    text-black
+    text-gray-700
+    text-blue-700
+    text-red-700
+    text-green-700
+    border
+    border-0
+    border-2
+    border-4
+    border-gray-200
+    border-blue-500
+    border-red-500
+
+    ## Effects
+    shadow
+    shadow-md
+    shadow-lg
+    shadow-xl
+    shadow-2xl
+    shadow-inner
+    shadow-outline
+    opacity-50
+    opacity-75
+    opacity-100
+
+    ## Backgrounds
+    bg-cover
+    bg-contain
+    bg-center
+    bg-no-repeat
+    bg-repeat
+    bg-fixed
+    bg-local
+
+    ## Borders & Radius
+    rounded
+    rounded-sm
+    rounded-md
+    rounded-lg
+    rounded-xl
+    rounded-full
+    border
+    border-t
+    border-b
+    border-l
+    border-r
+    border-dashed
+    border-dotted
+    border-solid
+
+    ## Transitions & Animation
+    transition
+    transition-all
+    transition-colors
+    transition-opacity
+    duration-75
+    duration-150
+    duration-300
+    ease-in
+    ease-out
+    ease-in-out
+    animate-spin
+    animate-pulse
+    animate-bounce
+
+    ## Interactivity
+    cursor-pointer
+    cursor-not-allowed
+    select-none
+    select-text
+    pointer-events-none
+    pointer-events-auto
+    focus:outline-none
+    focus:ring
+    hover:bg-gray-200
+    active:bg-gray-300
+
+    ## Miscellaneous
+    z-0
+    z-10
+    z-20
+    z-50
+    invisible
+    visible
+    sr-only
+    not-sr-only
+    resize
+    resize-none
+    resize-y
+    resize-x
+
+    # Extend as needed!

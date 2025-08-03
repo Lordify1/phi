@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+@tailwind utilities;
+
+
+/* === Custom PhiFinance Theme Variables === */
+:root {
+  --color-bg: #0d0f11; /* Deep dark background */
+  --color-foreground: #ffffff; /* White text */
+  --primary: #00d2ff; /* Aqua Blue (Logo highlight) */
+  --color-accent: #00ffb3;  /* Neon Green */
+  --color-highlight: #a76e3d; /* Earthy Brown */
+  --color-muted: #1e1f22; /* Darker muted background */
+  --radius: 0.5rem;
+}
+
+.dark {
+  --color-bg: #0d0f11;
+  --color-foreground: #ffffff;
+  --color-primary: #00d2ff;
+  --color-accent: #00ffb3;
+  --color-highlight: #a76e3d;
+  --color-muted: #1e1f22;
+}
+
+/* *{
+  border: 1px solid red !important;
+} */
+
+@layer base {
+  body {
+    @apply bg-[--color-bg] text-[--color-foreground];
+    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  * {
+    @apply border-[--color-muted];
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[--color-primary];
+  }
+
+  a {
+    @apply text-[--color-accent] hover:text-[--color-highlight] transition-colors;
+  }
+
+  button {
+    @apply bg-[--color-primary] text-black rounded-[var(--radius)] px-4 py-2 font-medium;
+  }
+
+  button:hover {
+    @apply bg-[--color-accent] text-black;
+  }
+
+  .btn_bg{
+    @apply bg-[--color-accent];
+  }
+}

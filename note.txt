@@ -1,0 +1,67 @@
+
+
+## 🧠 **New Platform Landing Page**
+
+(*This is your actual SaaS-style product launch page*)
+Think of it like a “sub-brand” with its own mini-site or nested under a route like `/advisor`.
+
+### ✅ Suggested Sections:
+
+1. **Hero Section**
+
+   * Title: “Your AI-Powered Startup Advisor”
+   * Subtitle: “Upload your deck. Get scaling insights. Connect with investors.”
+   * CTA: “Get Started Free”
+
+2. **How It Works (3-Step Flow)**
+
+   * Step 1: Upload your deck (PDF, PPTX)
+   * Step 2: Our AI analyzes your business model, traction, team
+   * Step 3: Get actionable recommendations & visibility to investors
+
+3. **Features Breakdown**
+
+   * ✨ Founders: Upload, get suggestions
+   * 🧠 AI: Analysis engine, tailored scale advice
+   * 💰 Investors: Browse, filter, rate, invest
+   * 🛠 Admin: Manage all, review AI outputs
+
+4. **For Founders Section**
+
+   * Visual: upload interface + sample AI feedback
+   * Text: “Find gaps. Fix pitch. Increase funding chances.”
+
+5. **For Investors Section**
+
+   * Visual: Investor dashboard mockup
+   * Text: “Discover promising startups fast. Filter by what matters.”
+
+6. **AI Suggestions Sneak Peek**
+
+   * Maybe show a blurred sample with keywords like "Add GTM Strategy," “Clarify Monetization Path”
+
+7. **User Testimonials (Future)**
+
+   * Placeholder for real feedback after launch
+
+8. **FAQs**
+
+   * “Is it free?” “How does AI analyze?” “Can I update my deck?”
+
+9. **Early Access or Register Section**
+
+   * Clean form or modal for user sign-up
+   * Possibly with tiered access ("Founder", "Investor", "Beta")
+
+10. **Footer (platform-specific)**
+
+* Terms, privacy, contact, social links
+
+---
+
+### 🧭 Navigation Flow Suggestion:
+
+On **main site**, have a CTA like:
+
+> "New: Try our AI Startup Advisor →"
+> Which leads to the second landing page focused on the SaaS tool.

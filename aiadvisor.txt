@@ -1,0 +1,66 @@
+Alright boss, here’s the **🔥 section breakdown** for the **AI Platform Index (Landing Page)** — this is your SaaS-style product home, so we’re coming in strong with structure and style.
+
+---
+
+### 🧠 PHI AI Landing Page Sections (Index)
+
+#### 1. **Hero Section**
+
+* **Title**: "Your AI-Powered Startup Advisor"
+* **Sub**: “Upload your deck. Get insights. Attract investors.”
+* **CTA**: “Get Started Free”
+* **Visual**: Futuristic dashboard preview or animated AI scanning deck
+
+#### 2. **How It Works (3-Step Flow)**
+
+* Step 1: Upload Pitch Deck
+* Step 2: AI Analyzes It
+* Step 3: Get Smart Insights & Visibility
+* **Visuals**: Iconic cards, animated flow arrows, or Lottie-style steps
+
+#### 3. **Feature Breakdown**
+
+* 💼 For Founders: Upload + Feedback
+* 🧠 For AI: Analysis Engine
+* 💰 For Investors: Browse + Rate
+* 🛠 For Admins: Control Panel View
+
+#### 4. **Founder Use Case Section**
+
+* **Visual**: Upload screen + sample AI suggestion (mocked)
+* **Text**: “Find gaps. Fix pitch. Get funded.”
+
+#### 5. **Investor Use Case Section**
+
+* **Visual**: Filter UI + startup cards
+* **Text**: “Find promising deals, fast.”
+
+#### 6. **AI Suggestions Sneak Peek**
+
+* **Blurred example** of feedback like:
+  *“Clarify GTM strategy,” “Add monetization model,” etc.*
+
+#### 7. **Testimonials Section** (Optional for now)
+
+* Placeholder for future feedback ("This helped me raise \$50K...")
+
+#### 8. **FAQs Section**
+
+* e.g., *“Is it free?”* *“Can I update deck?”* *“Is the AI accurate?”*
+
+#### 9. **Early Access / Registration**
+
+* Sign-up form with tier selection:
+
+  * ✅ Founder
+  * 💸 Investor
+  * 🧪 Beta Tester
+
+#### 10. **Footer**
+
+* Terms, Privacy, Contact, Socials
+
+---
+
+Want me to scaffold all these out into a React + Inertia layout with placeholder components so we can start slotting in? 😎
+Or should we start with Hero section build next?

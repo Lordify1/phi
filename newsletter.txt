@@ -1,0 +1,418 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Newsletter;
+use App\Models\NewsletterSubscriber;
+use Illuminate\Http\Request;
+
+class NewsletterController extends Controller
+{
+
+    public function storeNewsletter(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'subject' => 'required|string|max:255',
+            'content' => 'required',
+            'status' => 'required|in:draft,sent,scheduled',
+            'scheduled_date' => 'nullable|date|after:now',
+            'images.*' => 'file|mimes:jpeg,png,jpg,gif',
+            'attachments.*' => 'file|mimes:pdf,doc,docx,txt',
+        ]);
+
+        if ($validatedData['status'] === 'scheduled' && empty($validatedData['scheduled_date'])) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'The Schedule Date is Required'
+            ]);
+        }
+
+
+        // Save images
+
+        try{
+        $imagePaths = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('files/newsletters/images/'), $imageName);
+                $imagePaths[] = 'files/newsletters/images/' . $imageName;
+            }
+        }
+
+        // Save attachments
+        $attachmentPaths = [];
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $attachment) {
+                $attachmentName = time() . '_' . $attachment->getClientOriginalName();
+                $attachment->move(public_path('files/newsletters/attachments/'), $attachmentName);
+                $attachmentPaths[] = 'files/newsletters/attachments/' . $attachmentName;
+            }
+        }
+
+        // Create newsletter
+        $newsletterID = DB::table('newsletter')->insertGetId([
+            'title' => $validatedData['title'],
+            'subject' => $validatedData['subject'],
+            'content' => $validatedData['content'],
+            'status' => $validatedData['status'],
+            'scheduled_date' => $validatedData['status'] == 'sent' ? null : $validatedData['scheduled_date'],
+            'images' => json_encode($imagePaths),
+            'attachments' => json_encode($attachmentPaths),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // dd($newsletter);
+
+        // if($validatedData['status'] == 'send')
+        // {
+
+        // $subscribers = NewsLetterSubscribers::where('subscribe',true)->get('email');
+
+        // }
+
+        // $id = $newsletter->id;
+
+        if($validatedData['status'] == 'sent')
+        {
+            $this->sendNewsletterManually($newsletterID);
+        }
+
+
+
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Newsletter Created Successfully',
+        ]);
+
+        }catch(\Throwable $th)
+        {
+            return response()->json([
+                'status' => 'error',
+                'message' => $th->getMessage()
+            ]);
+        }
+
+
+    }
+
+
+    public function updateNewsletter(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'subject' => 'required|string|max:255',
+            'content' => 'required',
+            'status' => 'required|in:draft,sent,scheduled',
+            'scheduled_date' => 'nullable|nullable|date|after:now',
+            'images.*' => 'file|mimes:jpeg,png,jpg,gif',
+            'attachments.*' => 'file|mimes:pdf,doc,docx,txt',
+        ]);
+
+        if ($validatedData['status'] === 'scheduled' && empty($validatedData['scheduled_date'])) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'The Schedule Date is Required',
+            ]);
+        }
+
+
+        try{
+        $newsletter = DB::table('newsletter')->where('id', $id)->first();
+        if (!$newsletter) {
+            return redirect()->back()->withErrors('Newsletter not found.');
+        }
+
+        // Handle Imagesz
+        $imagePaths = json_decode($newsletter->images, true) ?? [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('files/newsletters/images/'), $imageName);
+                $imagePaths[] = 'files/newsletters/images/' . $imageName;
+            }
+        }
+
+        // Handle Attachments
+        $attachmentPaths = json_decode($newsletter->attachments, true) ?? [];
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $attachment) {
+                $attachmentName = time() . '_' . $attachment->getClientOriginalName();
+                $attachment->move(public_path('files/newsletters/attachments/'), $attachmentName);
+                $attachmentPaths[] = 'files/newsletters/attachments/' . $attachmentName;
+            }
+        }
+
+        // Update newsletter
+        $newsletter = DB::table('newsletter')->where('id', $id)->update([
+            'title' => $validatedData['title'],
+            'subject' => $validatedData['subject'],
+            'content' => $validatedData['content'],
+            'status' => $validatedData['status'],
+            'scheduled_date' => $validatedData['status'] == 'sent' ? null : $validatedData['scheduled_date'],
+            'images' => json_encode($imagePaths),
+            'attachments' => json_encode($attachmentPaths),
+            'updated_at' => now(),
+        ]);
+
+        if($validatedData['status'] == 'sent')
+        {
+            $this->sendNewsletterManually($id);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Newsletter Updated Successfully',
+        ]);
+
+        }catch(\Throwable $th)
+        {
+            return response()->json([
+                'status' => 'error',
+                'message' => $th->getMessage()
+            ]);
+        }
+    }
+
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(NewsLetter $newsLetter)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        $this->adminCheck();
+
+        $newsletter = NewsLetter::findOrFail($id);
+        return view('admin.edit_newsletter', compact('newsletter'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, NewsLetter $newsLetter)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Request $request)
+    {
+        $this->adminCheck();
+
+        try {
+
+            $id = $request->input('id');
+
+            $newsletter = DB::table('newsletter')->where('id', $id)->first();
+
+            if (!$newsletter) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Newsletter not found'
+                ]);
+            }
+
+
+            $imagePaths = json_decode($newsletter->images, true) ?? [];
+            $attachmentPaths = json_decode($newsletter->attachments, true) ?? [];
+
+            foreach ($imagePaths as $imagePath) {
+                $fullImagePath = public_path($imagePath);
+                if (file_exists($fullImagePath)) {
+                    unlink($fullImagePath);
+                }
+            }
+
+            foreach ($attachmentPaths as $attachmentPath) {
+                $fullAttachmentPath = public_path($attachmentPath);
+                if (file_exists($fullAttachmentPath)) {
+                    unlink($fullAttachmentPath);
+                }
+            }
+
+            DB::table('newsletter')->where('id', $id)->delete();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Newsletter deleted successfully'
+            ]);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $th->getMessage()
+            ]);
+        }
+    }
+
+
+
+    public function deleteNewsletterImage(Request $request)
+    {
+        try {
+            // Validate input
+            $request->validate([
+                'newsletter_id' => 'required',
+                'image_path' => 'required|string',
+            ]);
+
+            $newsletter = Newsletter::findOrFail($request->newsletter_id);
+
+            // Decode the images field from the database
+            $images = json_decode($newsletter->images, true);
+
+            if (is_array($images) && in_array($request->image_path, $images)) {
+                // Remove the image from the array
+                $images = array_filter($images, fn($path) => $path !== $request->image_path);
+
+                // Update the newsletter's images field
+                $newsletter->images = json_encode(array_values($images));
+                $newsletter->save();
+
+                // Delete the file from the filesystem
+                $fullPath = public_path($request->image_path);
+                if (file_exists($fullPath)) {
+                    unlink($fullPath);
+                }
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Image deleted successfully.',
+                ]);
+            }
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Image not found in newsletter.',
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function deleteNewsletterAttachment(Request $request)
+    {
+        try {
+            // Validate input
+            $request->validate([
+                'newsletter_id' => 'required|exists:newsletter,id',
+                'attachment_path' => 'required|string',
+            ]);
+
+            $newsletter = Newsletter::findOrFail($request->newsletter_id);
+
+            // Decode the attachments field from the database
+            $attachments = json_decode($newsletter->attachments, true);
+
+            if (is_array($attachments) && in_array($request->attachment_path, $attachments)) {
+                // Remove the attachment from the array
+                $attachments = array_filter($attachments, fn($path) => $path !== $request->attachment_path);
+
+                // Update the newsletter's attachments field
+                $newsletter->attachments = json_encode(array_values($attachments));
+                $newsletter->save();
+
+                // Delete the file from the filesystem
+                $fullPath = public_path($request->attachment_path);
+                if (file_exists($fullPath)) {
+                    unlink($fullPath);
+                }
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Attachment deleted successfully.',
+                ]);
+            }
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Attachment not found in newsletter.',
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
+    public function sendNewsletterManually($id)
+    {
+        try {
+            $subscribers = NewsLetterSubscribers::where('status','subscribed')->get();
+            $newsletter = Newsletter::findOrFail($id);
+
+            $title = $newsletter['title'];
+            $content = $newsletter['content'];
+            $subject = $newsletter['subject'];
+
+            // // Decode images and attachments JSON
+            // Decode images and attachments JSON
+            $images = json_decode($newsletter['images'], true) ?? [];
+            $attachments = json_decode($newsletter['attachments'], true) ?? [];
+
+            // // Ensure the decoded data is an array
+            // $images = is_array($images) ? $images : [];
+            // $attachments = is_array($attachments) ? $attachments : [];
+
+            $mailResponses = [];
+
+
+            foreach ($subscribers as $subscriber
+            ) {
+                \Log::info($subscriber->email);
+                \Log::info('Stop part');
+
+                try {
+                    // Queue the mailable
+                    Mail::to($subscriber->email)->queue(new NewsletterMail($title, $content, $subject, $images, $attachments, $subscriber->email));
+                    $mailResponses[] = "Mail queued for {$subscriber->email}";
+                } catch (\Exception $e) {
+                    \Log::error("Failed to queue mail for {$subscriber->email}: {$e->getMessage()}");
+                }
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Newsletters are being sent.',
+            ]);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'An error occurred while sending newsletters.',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function subscribers()
+    {
+        $subscribers = NewsletterSubscriber::all();
+        return response()->json($subscribers);
+    }
+
+    public function delete_subscriber()
+    {
+
+    }
+
+}
