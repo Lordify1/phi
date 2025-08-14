@@ -16,7 +16,7 @@ export const Hero = () => {
             <p className="text-lg md:text-xl text-gray-300 max-w-xl">
               Accelerate your startup in the decentralized economy. From funding to incubation, we provide everything you need to launch and scale your Web3 venture.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4">
+            {/* <div className="flex flex-wrap gap-4 pt-4">
               <Link
                 href="/get-started"
                 className="bg-[#00ffb3] hover:bg-[#00d2ff] text-black px-6 py-3 rounded-lg font-semibold transition"
@@ -29,7 +29,7 @@ export const Hero = () => {
               >
                 Explore Platform
               </Link>
-            </div>
+            </div> */}
           </div>
         </Fade>
 

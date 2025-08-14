@@ -58,7 +58,7 @@ export default function StartupForm({onClose, onResponse, EditData}){
                 {
                 isDragActive
                 ? <p className={`${isDragActive ? colorMap.text_primary : 'text-white'} font-bold`}>Let's Go</p>
-                : <p>Drag 'n' drop a file here, or click to select one</p>
+                : <p className="mt-2 ">Drag 'n' drop a your pitch deck here, or click to upload</p>
                 }
             </div>
             </div>

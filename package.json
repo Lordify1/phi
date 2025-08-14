@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@headlessui/react": "^2.2.0",
+        "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/react": "^2.0.0",
         "@radix-ui/react-avatar": "^1.1.3",
         "@radix-ui/react-checkbox": "^1.1.4",
@@ -58,7 +59,7 @@
         "react-dom": "^19.0.0",
         "react-dropzone": "^14.3.8",
         "react-icons": "^5.5.0",
-        "react-router-dom": "^7.6.2",
+        "react-router-dom": "^7.7.1",
         "react-simple-typewriter": "^5.0.1",
         "react-toastify": "^11.0.5",
         "tailwind-merge": "^3.0.1",

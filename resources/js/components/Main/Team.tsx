@@ -1,6 +1,7 @@
 // Team.tsx
 import { useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
+import { classMap } from "../Tools/Misc";
 
 
 
@@ -57,7 +58,7 @@ export const Team = ({teamData}) => {
               {teamData.length > 0 && teamData.map((member:any, idx:any) => {
                 const img = JSON.parse(member.picture)
                 return(
-                  <div key={idx} className="bg-[#121416] border border-[#1f1f1f] rounded-xl p-6 shadow-md">
+                  <div key={idx} className={`bg-[#121416] border border-[#1f1f1f] rounded-xl p-6 shadow-md ${classMap.hoverAnimate()}`}>
                     <img
                       src={img[0].url}
                       alt={member.name}
@@ -83,7 +84,7 @@ export const Team = ({teamData}) => {
                     </div>
 
                     <button
-                      className="mt-4 inline-block text-sm px-4 py-2 border border-[#19e68c] rounded hover:bg-[#19e68c] hover:text-black transition"
+                      className="mt-4 text-gray-300 inline-block text-sm px-4 py-2 border border-[#19e68c] rounded hover:bg-[#19e68c] hover:text-black transition"
                       onClick={() => setSelectedMember(member)}
                       style={{ cursor: "pointer" }}
                     >

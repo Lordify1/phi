@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import StartupCard from '@/components/Ui/Advisor/StartupCard';
 import {
   headingClass,
@@ -12,7 +12,9 @@ import LandingLayout from '@/layouts/Advisor/LandingLayout';
 import { Empty } from 'antd';
 import Offcanvas from '@/components/Ui/Offcanvas';
 import RateForm from '@/components/Advisor/Forms/RateForm';
-import { OffCanvasProvider } from '@/context/OffCanvasContext';
+import { OffCanvasContext, OffCanvasProvider } from '@/context/OffCanvasContext';
+import { useAuth } from '@/context/AuthContext';
+
 
 const dummyStartups = [
   {
@@ -52,26 +54,29 @@ const dummyStartups = [
     founder: "Jane Doe",
     description: "Optimizing routes and inventory using ML models.",
     image: "https://placehold.co/600x400/111/fff?text=SparkTech",
-    founderId: 2,
+    founderId: 5,
   },
   // Add more dummy entries as needed
 ];
 
-export default function Startups({user}) {
+export default function Startups({user, startups}) {
   const [showFilters, setShowFilters] = useState(false);
   const authUserId = 1; // Replace with actual auth user ID when available
   const [filteredStartups, setFilteredStartups] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [showRateForm, setShowRateForm] = useState(true);
+  const [showRateForm, setShowRateForm] = useState(false);
+  const {offData} = useContext(OffCanvasContext)
+  const auth = useAuth();
 
   useEffect(() => {
+    console.log(startups)
     setIsLoading(false)
   }, [filteredStartups])
 
   return (
     <>
     {/* <OffCanvasProvider> */}
-    <LandingLayout user={user}>
+    <LandingLayout user={user?.user}>
     <Head title='Startups'/>
     <div className="min-h-screen flex flex-col items-center bg-[phi-white] text-white px-4 py-6 text-[0.7rem]">
       <div className="flex justify-between items-center mb-6 w-full max-w-7xl">
@@ -89,7 +94,7 @@ export default function Startups({user}) {
       {/* Filter Panel */}
       <Filters
         showFilters={showFilters}
-        data={dummyStartups}
+        data={startups}
         filteredData={(e:any) => {setFilteredStartups(e)}}
       />
 
@@ -98,14 +103,16 @@ export default function Startups({user}) {
         <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-2 justify-items-center">
         {
         isLoading ? (<p>Loading</p>) : (
-          (filteredStartups || dummyStartups).length > 0 ? (
-            (filteredStartups || dummyStartups).map((startup) => (
+          (filteredStartups || startups).length > 0 ? (
+            (filteredStartups || startups).map((startup) => (
+              <>
               <StartupCard
               key={startup.id}
               {...startup}
               authUserId={authUserId}
-              showForm= {() => setShowRateForm(true)}
+              more={startup.id}
               />
+              </>
             ))
           ) : (
             emptyResult()
@@ -118,13 +125,12 @@ export default function Startups({user}) {
     </div>
     </LandingLayout>
     <Offcanvas
-    isOpen={showRateForm}
-    onClose={() => setShowRateForm(false)}
-    title={`Rate Startup`}
+      isOpen={showRateForm}
+      onClose={() => setShowRateForm(false)}
+      title={`Rate Startup`}
     >
       <RateForm
-      // onClose={}
-      // onResponse={}
+      auth={auth.user}
       />
     </Offcanvas>
     {/* </OffCanvasProvider> */}

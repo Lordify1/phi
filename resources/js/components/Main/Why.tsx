@@ -1,6 +1,7 @@
 // src/Pages/Sections/Why.tsx
 
 import { Fade } from 'react-awesome-reveal';
+import { classMap } from '../Tools/Misc';
 
 const reasons = [
   {
@@ -49,11 +50,11 @@ export const Why = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
           {reasons.map((item, i) => (
             <Fade direction="up" delay={i * 100} triggerOnce key={i}>
-              <div className="bg-[#111315] border border-[#1e1f22] rounded-xl flex flex-col h-full shadow-md hover:shadow-lg transition">
+              <div className={`bg-[#111315] border border-[#1e1f22] rounded-xl flex flex-col h-full shadow-md hover:shadow-lg transition ${classMap.hoverAnimate()}`}>
                 <img
                   src="https://placehold.co/600x400/000000/FFF?text=Why+Us"
                   alt={item.title}
-                  className="rounded-t-xl w-full h-48 object-cover"
+                  className={`rounded-t-xl w-full h-48 object-cover`}
                 />
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-semibold text-[#00ffb3] mb-2">{item.title}</h3>

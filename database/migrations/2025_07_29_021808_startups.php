@@ -37,6 +37,7 @@ return new class extends Migration {
 
             // Meta
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
+            $table->enum('quality_status', ['VERIFIED','PENDING','REJECTED'])->default('PENDING');
             $table->timestamp('launch_date')->nullable();
             $table->boolean('featured')->default(false);
 

@@ -1,7 +1,37 @@
+import React from "react";
 import { Fade } from "react-awesome-reveal";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import SendRequest from "../Tools/SendRequest";
+import { classMap } from "../Tools/Misc";
+
 
 export const Contact = () => {
+
+  const [data, setData] = React.useState({
+    name: "",
+    email: "",
+    message: "",
+    reason_id: ""
+  })
+
+  const contactTypes = [
+    "complaint",
+    "request",
+    "feedback",
+    "support",
+    "general_inquiry",
+    "other",
+  ]
+
+  const setDataToNull = () => {
+    setData({
+      name: "",
+      email: "",
+      message: "",
+      reason_id: ""
+    })
+  }
+
   return (
     <section className="py-20 bg-[#0e0f10] text-white" id="contact">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
@@ -15,24 +45,41 @@ export const Contact = () => {
               <input
                 type="text"
                 placeholder="Your Name"
-                className="w-full p-3 rounded bg-[#1a1d20] text-white border border-gray-700 focus:outline-none focus:border-[#4db8ff]"
+                onChange={(e) => setData((prev) => ({...prev, name: e.target.value}))}
+                className={`${classMap.input()}`}
               />
               <input
                 type="email"
                 placeholder="Your Email"
-                className="w-full p-3 rounded bg-[#1a1d20] text-white border border-gray-700 focus:outline-none focus:border-[#4db8ff]"
+                onChange={(e) => setData((prev) => ({...prev, email: e.target.value}))}
+                className={`${classMap.input()}`}
               />
               <textarea
                 rows={5}
                 placeholder="Your Message"
-                className="w-full p-3 rounded bg-[#1a1d20] text-white border border-gray-700 focus:outline-none focus:border-[#4db8ff]"
+                onChange={(e) => setData((prev) => ({...prev, message: e.target.value}))}
+                className={`${classMap.input()}`}
               ></textarea>
-              <button
-                type="submit"
-                className="px-6 py-3 bg-[#19e68c] text-black font-medium rounded hover:bg-[#15c67a] transition"
-              >
-                Send Message
-              </button>
+              <select 
+              name="reason_id"
+              id="reason_id"
+              onChange={(e) => setData((prev) => ({...prev, reason_id: e.target.value}))}
+              className={`${classMap.input()}`}>
+                <option value="" className="text-red-200">Select message Purpose</option>
+                {contactTypes.map((item, index) => {
+                  return(
+                    <option value={item} key={index}>{item}</option>
+                  )
+                })}
+              </select>
+              <SendRequest
+                url={'/contact_us'}
+                method="post"
+                data={data}
+                className="w-full"
+                onResponse={() => {setDataToNull()}}
+                text="Send Message"
+              />
             </form>
           </div>
         </Fade>

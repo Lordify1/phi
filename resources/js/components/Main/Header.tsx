@@ -17,12 +17,12 @@ export const Header = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-8 text-sm text-white">
+        {/* <nav className="hidden md:flex gap-8 text-sm text-white">
           <Link href={`${appUrl}/admin/dashboard`} className="hover:text-[#00ffb3] transition">Admin</Link>
           <Link href="/incubator" className="hover:text-[#00ffb3] transition">Incubator</Link>
           <Link href="/about" className="hover:text-[#00ffb3] transition">About</Link>
           <Link href="/contact" className="hover:text-[#00ffb3] transition">Contact</Link>
-        </nav>
+        </nav> */}
 
         {/* CTA */}
         <div className="hidden md:flex">
@@ -35,10 +35,18 @@ export const Header = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <div className="md:hidden">
+        {/* <div className="md:hidden">
           <button onClick={() => setMenuOpen(!menuOpen)} className="text-white">
             {menuOpen ? <HiX size={28} /> : <HiMenuAlt3 size={28} />}
           </button>
+        </div> */}
+        <div className="md:hidden">
+          <Link
+            href={appUrl + '/advisor'}
+            className="bg-[#00ffb3] text-black px-4 py-2 rounded-lg font-medium hover:bg-[#00d2ff] transition"
+          >
+            Launch App
+          </Link>
         </div>
       </div>
 

@@ -1,5 +1,7 @@
-import { appUrl } from "@/app";
+import { advisorUrl, appUrl } from "@/app";
+import { Link, router } from "@inertiajs/react";
 import { Empty } from "antd";
+import axios from "axios";
 import React from "react";
 import { toast } from "react-toastify";
 
@@ -47,7 +49,7 @@ export const centerFocus = (extra:string = 'null') => {
     )
 }
 export const startupInfo = () => {
-    return(`border border-1 hover:border-[#00ffb3] rounded-md hover:rounded hover:text-white hover:opacity-100 m-1 p-1 transitions duration-200`)
+    return(`border border-1 hover:border-[#00ffb3] rounded-md hover:rounded hover:text-white hover:opacity-100 m-1 p-2 transitions duration-200`)
 }
 
 
@@ -215,7 +217,7 @@ export const classMap = {
   input: (width = 'w-full') =>
     `${width} bg-[#232323] border border-gray-600 text-white p-2 rounded-md focus:outline-none focus:border-[#00ffb3]`,
 
-  label: () => "block text-sm font-medium text-gray-300 mb-1",
+  label: () => "block text-sm font-medium text-gray-300 mt-2 mb-1",
 
   card: (col?: number | string) =>
     `bg-[#222] flex border border-gray-700 rounded-lg shadow-md p-4${col ? ` col-span-${col}` : ''} text-center m-1 min-h-50 items-center`,
@@ -272,4 +274,103 @@ export const classMap = {
 
   startupInfo:
     "border border-1 hover:border-[#00ffb3] rounded-md hover:rounded hover:text-white hover:opacity-100 m-1 p-1 transitions duration-200",
+
+    pageSection: () => "bg-[#1a1a1a] p-4 rounded-md shadow",
+
+    pageHeader: () => "text-lg font-semibold mb-2",
+
+    commentBox: (sender:boolean = true, responder:boolean = false) => {
+        
+    },
+
+    hoverAnimate: () => `hover:rounded hover:${colorMap.border_primary} hover:text-white hover:opacity-100 m-1 p-1 transitions duration-500`
 };
+
+export const viewStartup = async (startup_id:any, user_id:any, guest:boolean) => {
+
+
+    if(guest){
+        
+        const oldId = localStorage.getItem('view_id');
+
+        oldId ?? localStorage.setItem('view_id', user_id)
+
+        const resp = await axios.post(`${advisorUrl}/startup/view`, {
+            'startup_id': startup_id,
+            'user_id': oldId ? oldId : user_id,
+            'guest': guest
+        })
+
+        console.log(resp)
+
+    }else{
+        const resp = await axios.post(`${advisorUrl}/startup/view`, {
+            'startup_id': startup_id,
+            'user_id': user_id,
+            'guest': guest
+        })
+    }
+    
+
+}
+
+export const likeStartup = async (startup_id:any, user_id:any, guest:boolean) => {
+
+
+    if(guest){
+        
+        router.visit(`${advisorUrl}/login`)
+
+    }else{
+        const resp = await axios.post(`${advisorUrl}/startup/like`, {
+            'startup_id': startup_id,
+            'user_id': user_id,
+            'guest': guest
+        })
+    }
+    
+
+}
+
+
+export const random = (max:any) => {
+    const rand = Math.random().toString(36).substring(2, max)
+    return rand;
+}
+
+export const getData = async (url, id, method = 'post') => {
+    const data = await (method == 'get' ? 
+    axios.get(`${advisorUrl}/${url}/${id ? id : ''}`) : 
+    axios.post(`${advisorUrl}/${url}/${id ? id : ''}`))
+
+    return data
+}
+
+
+export const NotAuth = ({action = 'Continue'}) => {
+    return(
+        <div className={classMap.pageSection()}>
+            <h1 
+            className="text-gray-400"
+            >
+                <Link 
+            href={`${advisorUrl}/login`}
+            className={classMap.link}
+            >Register</Link> or <Link 
+            href={`${advisorUrl}/login`}
+            className={classMap.link}
+            >Login</Link> to {action}
+            </h1>
+        </div>
+    )
+}
+
+export const hiddenNotAuth = ({children}) => {
+    return(
+        <Link
+            href={`${advisorUrl}/login`}
+            >
+                {children}
+        </Link>
+    )
+}

@@ -1,8 +1,10 @@
+import { appName } from "@/app";
+
 // resources/js/Components/Footer.tsx
 export const Footer = () => {
   return (
-    <footer className="bg-[#0d0f11] text-white py-10 border-t border-[#1e1f22] mt-24">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-6 text-sm">
+    <footer className="bg-[#0d0f11] text-white py-10 border-t border-[#1e1f22]">
+      <div className="w-100 mx-auto flex text-center flex-col md:flex-row justify-between gap-6 text-sm">
         <div>
           <h2 className="text-[#00d2ff] font-bold text-lg">PhiFinance</h2>
           <p className="mt-2 text-gray-400 max-w-sm">
@@ -10,12 +12,12 @@ export const Footer = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-12">
+        {/* <div className="flex flex-wrap gap-12">
           <div>
             <h3 className="font-semibold text-white mb-2">Explore</h3>
             <ul className="text-gray-400 space-y-1">
               <li><a href="/platform" className="hover:text-[#00ffb3]">Platform</a></li>
-              <li><a href="/about" className="hover:text-[#00ffb3]">About Us</a></li>
+              <li><a href="/about" className="hover:text-[#2f3d39]">About Us</a></li>
               <li><a href="/careers" className="hover:text-[#00ffb3]">Careers</a></li>
             </ul>
           </div>
@@ -27,11 +29,11 @@ export const Footer = () => {
               <li><a href="/contact" className="hover:text-[#00ffb3]">Contact</a></li>
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="text-center text-xs text-gray-600 mt-6">
-        © {new Date().getFullYear()} PhiFinance Inc. All rights reserved.
+        © {new Date().getFullYear()} {appName}. All rights reserved.
       </div>
     </footer>
   );

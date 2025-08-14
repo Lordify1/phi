@@ -5,12 +5,18 @@ use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Advisor\FounderController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Misc;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Middleware\AdminCheck;
 use App\Http\Middleware\Advisor\AuthCheck;
 use App\Http\Middleware\Advisor\GuestCheck;
+use App\Models\Startup;
+use App\Models\StartupComment;
 use Illuminate\Support\Facades\Auth;
+use App\Models\StartupLike;
+use Illuminate\Http\Request;
+
 
 //FRONTEND ROUTES START
     Route::get('/', function () {
@@ -24,6 +30,10 @@ use Illuminate\Support\Facades\Auth;
     // Newsletter subscription start
     Route::post('/newsletter/subscribe', [FrontendController::class, 'newsletter_subscribe'])->name('frontend.newsletter.subscribe');
     // Newsletter subscription end
+
+    // contact us start
+    Route::post('/contact_us', [FrontendController::class, 'contactUs']);
+    // contact us end
 // FRONTEND ROUTES END
 
 
@@ -127,19 +137,63 @@ Route::middleware([AdminCheck::class])->prefix('admin')->group(function () {
 
 Route::prefix('advisor')->group(function(){
 
+    // auth check 
+    Route::get('/auth-check', function(){
+        Auth::check() ? false : true;
+    });
+
     Route::get('/', function(){
         return Inertia::render('Advisor/Index', ['user' => Auth::user()]);
     });
 
     Route::get('/startups', function(){
-        return Inertia::render('Advisor/Startups', ['title' => 'Startups', 'user' => Auth::user()]);
+        $startups = Startup::all();
+        return Inertia::render('Advisor/Startups', [
+            'title' => 'Startups',
+            'user' => Auth::user(),
+            'startups' => $startups
+        ]);
     });
 
     // Founder start
 
     Route::prefix('startup')->group(function(){
-        Route::get('/get/{id}', []);    
+        Route::get('/get/{id}', function($id){
+            $startup = Startup::findOrFail($id);
+            return Inertia::render('Advisor/StartupDetail', [
+                'title' => $startup->name,
+                'startup' => $startup
+            ]);
+        });
+        
+        // detail
+        Route::post('/get/{id}', function(Request $request,$id){
+            $startup = Startup::findOrFail($id);
+            $hasLike = StartupLike::
+            where('user_id', Auth::id())
+            ->where('startup_id', $id)
+            ->orWhere('guest_id', $request->input('guest_id'))
+            ->first();
+            $startup->has_liked = $hasLike ? true : false;
+
+            return response()->json([
+                'title' => $startup->name,
+                'startup' => $startup,
+                'has' => $hasLike
+            ]);
+        });   
         Route::post('/rate', [FounderController::class, 'rateStartup']);
+        Route::post('/view', [Misc::class, 'viewStartup']);
+        Route::post('/like', [Misc::class, 'likeStartup']);
+
+        // comment
+        Route::prefix('comment')->group(function(){
+            Route::get('/fetch/{id}', function($id){
+               $comments = StartupComment::where('startup_id', $id)->get();
+               return response()->json(['comments' => $comments]);
+            });
+            Route::post('/save', [Misc::class, 'saveStartupComment']);
+        });
     });
 
     // Founder end

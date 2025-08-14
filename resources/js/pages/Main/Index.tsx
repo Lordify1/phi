@@ -53,7 +53,7 @@ const Layout = ({ children }: LayoutProps) => {
         <Newsletter/>
         <Team teamData={team}/>
         <Contact/>
-        <CTA/>
+        {/* <CTA/> */}
       </main>
       <Footer />
     </div>
