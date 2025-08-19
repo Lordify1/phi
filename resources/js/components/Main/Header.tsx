@@ -42,7 +42,7 @@ export const Header = () => {
         </div> */}
         <div className="md:hidden">
           <Link
-            href={appUrl + '/advisor'}
+            href={appUrl + '/under-construction'}
             className="bg-[#00ffb3] text-black px-4 py-2 rounded-lg font-medium hover:bg-[#00d2ff] transition"
           >
             Launch App
@@ -58,7 +58,7 @@ export const Header = () => {
           <Link href="/about" className="block hover:text-[#00ffb3]">About</Link>
           <Link href="/contact" className="block hover:text-[#00ffb3]">Contact</Link>
           <Link
-            href="/get-started"
+            href={appUrl + '/under-construction'}
             className="inline-block mt-2 bg-[#00ffb3] text-black px-4 py-2 rounded-lg font-medium hover:bg-[#00d2ff] transition"
           >
             Launch App

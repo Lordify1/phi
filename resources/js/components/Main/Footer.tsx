@@ -4,7 +4,7 @@ import { appName } from "@/app";
 export const Footer = ({partial = false}) => {
   return (
     <footer className="bg-[#0d0f11] text-white py-10 border-t border-[#1e1f22]">
-      <div className="w-100 mx-auto flex text-center flex-col md:flex-row justify-between gap-6 text-sm">
+      <div className="max-w-6xl mx-auto px-6 flex text-center flex-col md:flex-row justify-center gap-6 text-sm">
         {!partial && (
           <div>
           <h2 className="text-[#00d2ff] font-bold text-lg">PhiFinance</h2>

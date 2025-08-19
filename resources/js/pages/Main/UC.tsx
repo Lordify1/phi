@@ -4,7 +4,7 @@ import { IoConstructOutline } from "react-icons/io5";
 
 const UC = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#0e0e0e] text-white">
+    <div className="flex flex-col min-h-screen bg-[#0e0e0e] text-white" scroll-region={true}>
       <Head title="Under Construction"/>
       <main className="flex-grow flex flex-col items-center justify-center p-6 text-center">
         <IoConstructOutline className="text-5xl md:text-7xl text-[#00d2ff] mb-6 animate-pulse" />

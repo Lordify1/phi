@@ -26,20 +26,20 @@ const Layout = ({ children }: LayoutProps) => {
     axios.get(appUrl + '/partners/get')
     .then((res:any) => {
       setPartners(res.data)
-      console.log(res)
+      // console.log(res)
     })
     .catch((res) => console.log(res))
 
     axios.get(appUrl + '/team/get')
     .then((res:any) => {
       setTeam(res.data)
-      console.log(res)
+      // console.log(res)
     })
     .catch((res) => console.log(res))
   }, [])
 
   return (
-    <div className="flex flex-col bg-[#0e0e0e] text-white">
+    <div className="flex flex-col bg-[#0e0e0e] text-white" scroll-region={true}>
       <Header />
       <Head
       title='Welcome'

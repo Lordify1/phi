@@ -5,7 +5,7 @@ import { useAuth } from "@/context/AuthContext";
 import { Link } from "@inertiajs/react";
 
 export default function LandingLayout({ children, user = useAuth() }) {
-  console.log(user)
+  // console.log(user)
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a0a0a] to-[#141414] text-white font-sans">

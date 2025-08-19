@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Button, Modal } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
+import { appUrl } from "@/app";
 
 export default function SendRequest({
   text = "Submit",
@@ -28,7 +29,7 @@ export default function SendRequest({
   const [showConfirm, setShowConfirm] = useState(false);
   const [eventRef, setEventRef] = useState<null | React.MouseEvent<HTMLButtonElement>>(null);
 
-  const appUrl = 'http://localhost/phi/public';
+  // const mainUrl = appUrl;
 
   const executeRequest = async (e: any) => {
     e.preventDefault();
@@ -73,13 +74,13 @@ export default function SendRequest({
       toast.success(response?.data?.message || "Success!");
       onResponse?.(response);
 
-      console.log(response)
+      // console.log(response)
 
       if (response?.data?.redirectUrl && redirect) {
         if(response?.data?.intended === true){
           window.location.href = response.data.redirectUrl;
         }else{
-          window.location.href = appUrl + response.data.redirectUrl;
+          window.location.href = mainUrl + response.data.redirectUrl;
         }
       }
     } catch (error) {
