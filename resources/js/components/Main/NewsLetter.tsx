@@ -50,6 +50,7 @@ export const Newsletter = () => {
           text='Subscribe'
           url={`/newsletter/subscribe`}
           data={data}
+          loadingText='Subscribing....'
           onResponse={() => {}}
           />
         </form>

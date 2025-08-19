@@ -34,6 +34,18 @@ use Illuminate\Http\Request;
     // contact us start
     Route::post('/contact_us', [FrontendController::class, 'contactUs']);
     // contact us end
+
+    // innovators start
+    Route::get('/innovations-deck', function(){
+        return Inertia::render('Main/Innovations');
+    });
+    // innovators end
+
+    // under construction start
+    Route::get('/under-construction', function(){
+        return Inertia::render('Main/UC');
+    });
+    // under construction end
 // FRONTEND ROUTES END
 
 

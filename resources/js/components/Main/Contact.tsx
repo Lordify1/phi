@@ -86,15 +86,15 @@ export const Contact = () => {
 
         <Fade direction="right" triggerOnce>
           <div className="space-y-6">
-            <div className="flex items-start gap-4">
+            {/* <div className="flex items-start gap-4">
               <FaMapMarkerAlt className="text-[#4db8ff] text-xl mt-1" />
               <div>
                 <h4 className="font-semibold text-lg">Our Location</h4>
                 <p className="text-gray-400">Swiss-based HQ • Remote-first worldwide</p>
               </div>
-            </div>
+            </div> */}
 
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4 ">
               <FaEnvelope className="text-[#4db8ff] text-xl mt-1" />
               <div>
                 <h4 className="font-semibold text-lg">Email Us</h4>
@@ -102,13 +102,13 @@ export const Contact = () => {
               </div>
             </div>
 
-            <div className="flex items-start gap-4">
+            {/* <div className="flex items-start gap-4">
               <FaPhoneAlt className="text-[#4db8ff] text-xl mt-1" />
               <div>
                 <h4 className="font-semibold text-lg">Phone</h4>
                 <p className="text-gray-400">+41 22 123 4567 (Mon–Fri)</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </Fade>
       </div>

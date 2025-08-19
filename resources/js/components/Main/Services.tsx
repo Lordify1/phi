@@ -1,35 +1,37 @@
 import { Fade } from 'react-awesome-reveal';
 import { classMap } from '../Tools/Misc';
+import { appUrl } from '@/app';
 
 const services = [
   {
-    title: "Startup Incubation and Acceleration",
+    title: "Startup Incubation & Acceleration",
     description:
-      "Our end-to-end incubation services provide Web3.0 startups with the tools, resources, and guidance needed to bring ideas to life. From concept to launch, we support every growth stage.",
-    image: "https://placehold.co/600x400/000000/FFF",
+      "Our end-to-end incubation services provide Web3.0 startups with the tools, resources, and guidance needed to bring their ideas to life.",
+    image: `${appUrl}/assets/images/phi/acceleration.png`,
   },
   {
-    title: "Investor Relations and Fundraising",
+    title: "Investor Relations & Fundraising",
     description:
-      "We connect visionary startups with committed investors. Through strong networks, we help secure funding, build relationships, and create partnerships that power sustainable growth.",
-    image: "https://placehold.co/600x400/000000/FFF",
+      "We connect visionary startups with committed investors through our strong networks to help them secure funding, build relationships, and create partnerships.",
+    image: `${appUrl}/assets/images/phi/relation.png`,
   },
   {
-    title: "Entrepreneur & Investor Development",
+    title: "Entrepreneur & Investor Dev.",
     description:
       "We nurture talent by giving early access to projects, hands-on learning, and exclusive opportunities—empowering future founders and investors in the Web3 space.",
-    image: "https://placehold.co/600x400/000000/FFF",
+    image: `${appUrl}/assets/images/phi/investor.png`,
   },
 ];
 
 export const Services = () => {
   return (
     <section className="bg-[#0d0f11] text-white py-24 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
-        <Fade direction="up" triggerOnce>
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-16 text-[#00d2ff]">
-            What We Offer
-          </h2>
+      <div className="max-w-7xl text-center mx-auto">
+        <Fade triggerOnce cascade>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#00d2ff]">Why Choose Us</h2>
+          <p className="text-gray-400 max-w-3xl mx-auto mb-16">
+            PhiFinance is more than just an incubator — we're a launchpad for Web3 pioneers.
+          </p>
         </Fade>
 
         <div className="grid gap-16 md:grid-cols-3">
@@ -39,9 +41,9 @@ export const Services = () => {
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-50 object-cover"
+                  className="my-image w-full h-50 object-cover"
                 />
-                <div className="p-6 space-y-4">
+                <div className="p-6 space-y-4 h-50">
                   <h3 className="text-xl font-semibold text-[#00ffb3]">
                     {service.title}
                   </h3>

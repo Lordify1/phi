@@ -2,37 +2,44 @@
 
 import { Fade } from 'react-awesome-reveal';
 import { classMap } from '../Tools/Misc';
+import { appUrl } from '@/app';
 
 const reasons = [
   {
     title: "Comprehensive Web3 Expertise",
     description:
       "With specialized knowledge in DeFi, NFTs, the metaverse, and blockchain, we guide Web3.0 startups through every phase of development.",
+      image: `${appUrl}/assets/images/phi/expertise.png`
   },
   {
     title: "Secure and Trustworthy Environment",
     description:
       "Security is at the core of everything we do. We prioritize infrastructure and transparency to give startups peace of mind.",
+      image: `${appUrl}/assets/images/phi/secure.png`
   },
   {
     title: "Mentorship from Industry Leaders",
     description:
       "Our mentors bring years of Web3 and finance experience to guide founders through common pitfalls and scale strategically.",
+      image: `${appUrl}/assets/images/phi/mentor.png`
   },
   {
     title: "Access to a Global Investor Network",
     description:
       "We connect startups with passionate global investors, opening funding, partnerships, and collaborations worldwide.",
+      image: `${appUrl}/assets/images/phi/network.png`
   },
   {
     title: "Innovation-Driven Culture",
     description:
       "We encourage bold ideas and creative problem-solving—empowering founders to push the boundaries of decentralized tech.",
+      image: `${appUrl}/assets/images/phi/innovation.png`
   },
   {
     title: "Commitment to Long-Term Growth",
     description:
       "We focus on sustainability. Our support system is built to nurture startups through long-term success.",
+    image: `${appUrl}/assets/images/phi/longterm.png`
   },
 ];
 
@@ -52,9 +59,9 @@ export const Why = () => {
             <Fade direction="up" delay={i * 100} triggerOnce key={i}>
               <div className={`bg-[#111315] border border-[#1e1f22] rounded-xl flex flex-col h-full shadow-md hover:shadow-lg transition ${classMap.hoverAnimate()}`}>
                 <img
-                  src="https://placehold.co/600x400/000000/FFF?text=Why+Us"
+                  src={item.image}
                   alt={item.title}
-                  className={`rounded-t-xl w-full h-48 object-cover`}
+                  className={`my-image rounded-t-xl w-full h-48 object-cover`}
                 />
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-semibold text-[#00ffb3] mb-2">{item.title}</h3>

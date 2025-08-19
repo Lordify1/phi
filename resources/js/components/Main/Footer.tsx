@@ -1,16 +1,18 @@
 import { appName } from "@/app";
 
 // resources/js/Components/Footer.tsx
-export const Footer = () => {
+export const Footer = ({partial = false}) => {
   return (
     <footer className="bg-[#0d0f11] text-white py-10 border-t border-[#1e1f22]">
       <div className="w-100 mx-auto flex text-center flex-col md:flex-row justify-between gap-6 text-sm">
-        <div>
+        {!partial && (
+          <div>
           <h2 className="text-[#00d2ff] font-bold text-lg">PhiFinance</h2>
           <p className="mt-2 text-gray-400 max-w-sm">
             Building a future-proof Web3 incubation platform that accelerates growth and innovation.
           </p>
         </div>
+        )}
 
         {/* <div className="flex flex-wrap gap-12">
           <div>
@@ -32,7 +34,7 @@ export const Footer = () => {
         </div> */}
       </div>
 
-      <div className="text-center text-xs text-gray-600 mt-6">
+      <div className={`text-center text-xs text-gray-600 ${!partial && 'mt-6'}`}>
         © {new Date().getFullYear()} {appName}. All rights reserved.
       </div>
     </footer>

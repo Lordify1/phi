@@ -283,6 +283,8 @@ export const classMap = {
         
     },
 
+    hoverBg: () => `hover:${colorMap.bg_primary}`,
+
     hoverAnimate: () => `hover:rounded hover:${colorMap.border_primary} hover:text-white hover:opacity-100 m-1 p-1 transitions duration-500`
 };
 

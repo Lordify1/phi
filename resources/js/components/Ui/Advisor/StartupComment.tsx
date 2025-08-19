@@ -8,8 +8,6 @@ export const StartupCommentForm = ({startup_id, auth}) => {
     const [reload, setReload] = useState(false)
     const {store, fetchData} = useFetch();
 
-    console.log(auth)
-
     const [data, setData] =  useState({
       startup_id: startup_id,
       comment: ''

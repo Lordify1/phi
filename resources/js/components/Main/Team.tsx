@@ -50,7 +50,12 @@ export const Team = ({teamData}) => {
   return (
     <section className="py-20 bg-[#0e0f10] text-white">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold mb-12 text-[#4db8ff]">Meet the Team</h2>
+        <Fade direction="up" triggerOnce>
+          <h2 className="text-4xl font-bold mb-5 text-[#4db8ff]">Meet the Team</h2>
+          <p className="text-gray-400 max-w-3xl mx-auto mb-16">
+            Our team is a diverse group of seasoned entrepreneurs, financial experts, and blockchain pioneers.
+          </p>
+        </Fade>
 
         {!selectedMember ? (
           <Fade cascade triggerOnce>

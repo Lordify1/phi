@@ -1,5 +1,7 @@
+import { appUrl } from '@/app';
 import { Link } from '@inertiajs/react';
 import { Fade } from 'react-awesome-reveal';
+import { classMap } from '../Tools/Misc';
 
 export const Hero = () => {
   return (
@@ -35,8 +37,12 @@ export const Hero = () => {
 
         {/* Placeholder for Animation or Image */}
         <Fade direction="right">
-          <div className="w-full h-[350px] md:h-[450px] bg-[#00d2ff]/10 border border-[#00ffb3]/30 rounded-xl flex items-center justify-center text-gray-400">
-            [3D Visual / Animation Placeholder]
+          <div className="w-full h-[350px] md:h-[450px] rounded-xl flex items-center justify-center text-gray-400 video-container">
+            <video src={`${appUrl}/assets/videos/hero.mp4`} 
+              className={`bg-[#00d2ff]/10 border border-[#00ffb3]/30 rounded-xl ${classMap.hoverAnimate()}`} 
+              autoPlay muted loop 
+              onContextMenu={() => false}
+            ></video>
           </div>
         </Fade>
       </div>
