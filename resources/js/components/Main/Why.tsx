@@ -3,69 +3,60 @@
 import { Fade } from 'react-awesome-reveal';
 import { classMap } from '../Tools/Misc';
 import { appUrl } from '@/app';
+import { FaCheckCircle, FaHandHoldingUsd, FaHandshake, FaNetworkWired } from 'react-icons/fa';
 
 const reasons = [
   {
-    title: "Comprehensive Web3 Expertise",
+    title: "Track Record",
     description:
-      "With specialized knowledge in DeFi, NFTs, the metaverse, and blockchain, we guide Web3.0 startups through every phase of development.",
-      image: `${appUrl}/assets/images/phi/expertise.png`
+      "Team has evolved projects from Game, AI sectors worth millions of dollars",
+      image: <FaCheckCircle className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
   },
   {
-    title: "Secure and Trustworthy Environment",
+    title: "Succesful Fundraising",
     description:
-      "Security is at the core of everything we do. We prioritize infrastructure and transparency to give startups peace of mind.",
-      image: `${appUrl}/assets/images/phi/secure.png`
+      "Contributed to fundraising for projects worth $250K above from partners and sponsors ",
+      image: <FaHandHoldingUsd className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
   },
   {
-    title: "Mentorship from Industry Leaders",
+    title: "Investor Network",
     description:
-      "Our mentors bring years of Web3 and finance experience to guide founders through common pitfalls and scale strategically.",
-      image: `${appUrl}/assets/images/phi/mentor.png`
+      "We have VC partners + sponsors making our normal ticket size worth $250K - $10M",
+      image: <FaNetworkWired className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
   },
   {
-    title: "Access to a Global Investor Network",
+    title: "Investment Focus",
     description:
-      "We connect startups with passionate global investors, opening funding, partnerships, and collaborations worldwide.",
-      image: `${appUrl}/assets/images/phi/network.png`
-  },
-  {
-    title: "Innovation-Driven Culture",
-    description:
-      "We encourage bold ideas and creative problem-solving—empowering founders to push the boundaries of decentralized tech.",
-      image: `${appUrl}/assets/images/phi/innovation.png`
-  },
-  {
-    title: "Commitment to Long-Term Growth",
-    description:
-      "We focus on sustainability. Our support system is built to nurture startups through long-term success.",
-    image: `${appUrl}/assets/images/phi/longterm.png`
-  },
+      "We have a ticket size of $50K personal investment for projects that typically matches our due diligence ",
+      image: <FaHandshake className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
+  }
 ];
 
 export const Why = () => {
   return (
-    <section className="bg-[#0d0f11] text-white px-6 py-24 md:py-32">
+    <section className="bg-[#0d0f11] text-white px-3 py-10 md:py-10">
       <div className="max-w-6xl mx-auto text-center">
         <Fade triggerOnce cascade>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#00d2ff]">Why Choose Us</h2>
-          <p className="text-gray-400 max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[var(--primary)]">Why Choose <h2 className='text-[var(--secondary)] inline'>Us</h2></h2>
+          <h6 className="text-gray-400 max-w-3xl mx-auto mb-16">
             We’re more than just an incubator — we’re your growth partner in the evolving Web3.0 frontier.
-          </p>
+          </h6>
         </Fade>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-center">
           {reasons.map((item, i) => (
             <Fade direction="up" delay={i * 100} triggerOnce key={i}>
-              <div className={`bg-[#111315] border border-[#1e1f22] rounded-xl flex flex-col h-full shadow-md hover:shadow-lg transition ${classMap.hoverAnimate()}`}>
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className={`my-image rounded-t-xl w-full h-48 object-cover`}
-                />
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl font-semibold text-[#00ffb3] mb-2">{item.title}</h3>
-                  <p className="text-gray-300 flex-1">{item.description}</p>
+              <div className={`bg-[#121417] border border-[#1e1f22] rounded-xl ${classMap.hoverAnimate()}`}>
+                <div className="p-2">
+                  {item.image}
+                </div>
+                <div className="p-2 text-center relative group inline-block">
+                  <h3 className={`${classMap.cardTitle()}`}>
+                    {item.title}
+                  </h3><button className={`${classMap.tooltipBtn()}`}>i</button>
+                  <div className={`${classMap.tooltip()}`}>
+                    <small className="text-sm">{item.description}</small>
+                  </div>
                 </div>
               </div>
             </Fade>

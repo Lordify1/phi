@@ -193,9 +193,11 @@ export const colorMap = {
     text_primary: "text-[#00ffb3]",
     text_secondary: "text-[#a76e3d]",
     text_dark: "text-[#0d0f11]",
+    text_danger: "text-[var(--danger)]",
     border_primary: "border-[#00ffb3]",
     border_secondary: "border-[#a76e3d]",
-    border_dark: "border-[#0d0f11]"
+    border_dark: "border-[#0d0f11]",
+    border_danger: "border-[var(--danger)]"
 }
 // 
 
@@ -212,10 +214,11 @@ export const emptyResult = () => {
 export const classMap = {
   form: "bg-[#1b1b1b] border border-gray-700 text-white p-2 rounded-md",
 
-  button: (bg?:any, hover?:any, text?:any) => `${bg ? bg : 'bg-[#00ffb3]'} hover:${hover? hover : 'bg-[#a76e3d]'} hover:${text ? text : 'text-white'} text-black font-semibold py-2 px-2 mx-2 mt-2 rounded-md transitions duration-200`,
+  button: (bg?:string, hover?:string, text?:string, textsize?:string, direction?:string) => `${bg ? bg : 'bg-transparent'} hover:bg-[#00ffb3] hover:${text ? text : 'text-black'} text-white border-2 border-[#00ffb3]/30 ${textsize} font-semibold py-2 px-4 m-1 
+  ${direction === 'left' ? 'rounded-l-2xl rounded-e-none' : 'rounded-l-none rounded-e-2xl'} hover:rounded-none transitions duration-300`,
 
   input: (width = 'w-full') =>
-    `${width} bg-[#232323] border border-gray-600 text-white p-2 rounded-md focus:outline-none focus:border-[#00ffb3]`,
+    `${width} px-4 py-3 rounded-md bg-[#1e1f22] text-white placeholder-gray-400 w-full focus:outline-none focus:ring-2 focus:ring-[#00d2ff]`,
 
   label: () => "block text-sm font-medium text-gray-300 mt-2 mb-1",
 
@@ -285,7 +288,15 @@ export const classMap = {
 
     hoverBg: () => `hover:${colorMap.bg_primary}`,
 
-    hoverAnimate: () => `hover:rounded hover:${colorMap.border_primary} hover:text-white hover:opacity-100 m-1 p-1 transitions duration-500`
+    hoverAnimate: () => `hover:rounded hover:${colorMap.border_primary} hover:text-white hover:w-[99%] hover:opacity-100 m-1 p-1 transitions duration-500`,
+
+    hoverImg: () => `hover:w-[99%] transitions duration-500`,
+
+    tooltip: () => `absolute left-0 bottom-full -translate-x-1/8 ml-2 w-47 p-2 text-[0.3em] border rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:bg-[var(--color-muted)] group-hover:text-[var(--primary)] group-focus-within:opacity-100 group-focus-within:bg-[var(--color-muted)] group-focus-within:text-[var(--primary)] transition-opacity duration-200 z-100 pointer-events-none group-hober:pointer-events-none`,
+
+    cardTitle: () => `text-xl font-semibold text-[#00ffb3] cursor-pointer inline`,
+
+    tooltipBtn: () => `${classMap.iconButton}, inline text-gray-500 italic bg-transparent hover:bg-transparent cursor-pointer`
 };
 
 export const viewStartup = async (startup_id:any, user_id:any, guest:boolean) => {

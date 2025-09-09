@@ -8,9 +8,9 @@ export const Footer = ({partial = false}) => {
         {!partial && (
           <div>
           <h2 className="text-[#00d2ff] font-bold text-lg">PhiFinance</h2>
-          <p className="mt-2 text-gray-400 max-w-sm">
+          <h6 className="mt-2 text-gray-400 max-w-sm">
             Building a future-proof Web3 incubation platform that accelerates growth and innovation.
-          </p>
+          </h6>
         </div>
         )}
 

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { Button, Modal } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { appUrl } from "@/app";
+import { classMap } from "./Misc";
 
 export default function SendRequest({
   text = "Submit",
@@ -127,7 +128,7 @@ export default function SendRequest({
       {!deleteBtn ? (
         <button
           onClick={handleClick}
-          className={`bg-[#00FFD1] hover:bg-[#00ccaa] text-black font-medium px-5 py-2 rounded-md transition duration-200 ${isProcessing ? "opacity-70 cursor-not-allowed" : ""} ${className}`}
+          className={`${classMap.button()} ${isProcessing ? "opacity-70 cursor-not-allowed" : ""} ${className}`}
           disabled={isProcessing || disabled}
           title={title}
         >

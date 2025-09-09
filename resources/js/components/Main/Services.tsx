@@ -1,53 +1,75 @@
 import { Fade } from 'react-awesome-reveal';
 import { classMap } from '../Tools/Misc';
 import { appUrl } from '@/app';
+import { Team } from './Team';
+import { FaGavel, FaUsers, FaHandshake, FaCoins, FaChartLine, FaRocket, FaExchangeAlt, FaChartPie } from "react-icons/fa";
 
 const services = [
   {
-    title: "Startup Incubation & Acceleration",
-    description:
-      "Our end-to-end incubation services provide Web3.0 startups with the tools, resources, and guidance needed to bring their ideas to life.",
-    image: `${appUrl}/assets/images/phi/acceleration.png`,
+    title: "Legal Support",
+    description: "Guidance on legal and operational matters for Web3 startups.",
+    image: <FaGavel className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
   },
   {
-    title: "Investor Relations & Fundraising",
-    description:
-      "We connect visionary startups with committed investors through our strong networks to help them secure funding, build relationships, and create partnerships.",
-    image: `${appUrl}/assets/images/phi/relation.png`,
+    title: "Mentorship",
+    description: "Connect with experts and build a strong community.",
+    image: <FaUsers className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
   },
   {
-    title: "Entrepreneur & Investor Dev.",
-    description:
-      "We nurture talent by giving early access to projects, hands-on learning, and exclusive opportunities—empowering future founders and investors in the Web3 space.",
-    image: `${appUrl}/assets/images/phi/investor.png`,
+    title: "Brand Partners",
+    description: "Access to essential partnerships for growth.",
+    image: <FaHandshake className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
+  },
+  {
+    title: "IDC/ICO Fundraising",
+    description: "Support for token fundraising and investor outreach.",
+    image: <FaCoins className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
+  },
+  {
+    title: "VC Fundraising",
+    description: "Connect with venture capital for funding.",
+    image: <FaChartLine className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
+  },
+  {
+    title: "GTM Strategy",
+    description: "Go-to-market execution and launch support.",
+    image: <FaRocket className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
+  },
+  {
+    title: "Exchange Listing",
+    description: "Assistance with CEX/DEX listings.",
+    image: <FaExchangeAlt className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
+  },
+  {
+    title: "Market Making",
+    description: "Liquidity and market making services.",
+    image: <FaChartPie className={`text-[var(--primary)] mt-2 w-full h-20 object-cover ${classMap.hoverAnimate()}`} />,
   },
 ];
 
 export const Services = () => {
   return (
-    <section className="bg-[#0d0f11] text-white py-24 px-6 md:px-12">
+    <section className="bg-[#0d0f11] text-white py-10 px-3 md:px-10">
       <div className="max-w-7xl text-center mx-auto">
         <Fade triggerOnce cascade>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#00d2ff]">Why Choose Us</h2>
-          <p className="text-gray-400 max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-[var(--primary)]">What we <h2 className='text-[var(--secondary)] inline'>Offer</h2></h2>
+          <h5 className="text-gray-400 max-w-3xl mx-auto mb-16">
             PhiFinance is more than just an incubator — we're a launchpad for Web3 pioneers.
-          </p>
+          </h5>
         </Fade>
 
-        <div className="grid gap-16 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-4">
           {services.map((service, idx) => (
             <Fade key={idx} direction="up" cascade triggerOnce>
-              <div className={`bg-[#121417] border border-[#1e1f22] rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition hover:duration-300 ${classMap.hoverAnimate()}`}> 
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="my-image w-full h-50 object-cover"
-                />
-                <div className="p-6 space-y-4 h-50">
-                  <h3 className="text-xl font-semibold text-[#00ffb3]">
+              <div className={`bg-[#121417] border border-[#1e1f22] rounded-xl ${classMap.hoverAnimate()}`}> 
+                <div className="p-2">{service.image}</div>
+                <div className="p-2 text-center relative group inline-block">
+                  <h3 className={`${classMap.cardTitle()}`}>
                     {service.title}
-                  </h3>
-                  <p className="text-gray-300 text-sm">{service.description}</p>
+                  </h3><button className={`${classMap.tooltipBtn()} `}>i</button>
+                  <div className={`${classMap.tooltip()}`}>
+                    <small className="text-sm">{service.description}</small>
+                  </div>
                 </div>
               </div>
             </Fade>
@@ -57,3 +79,5 @@ export const Services = () => {
     </section>
   );
 };
+
+

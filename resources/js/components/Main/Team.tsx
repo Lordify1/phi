@@ -48,13 +48,13 @@ export const Team = ({teamData}) => {
   const handleBack = () => setSelectedMember(null);
 
   return (
-    <section className="py-20 bg-[#0e0f10] text-white">
+    <section className="py-10 bg-[#0e0f10] text-white">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <Fade direction="up" triggerOnce>
           <h2 className="text-4xl font-bold mb-5 text-[#4db8ff]">Meet the Team</h2>
-          <p className="text-gray-400 max-w-3xl mx-auto mb-16">
+          <h6 className="text-gray-400 max-w-3xl mx-auto mb-16">
             Our team is a diverse group of seasoned entrepreneurs, financial experts, and blockchain pioneers.
-          </p>
+          </h6>
         </Fade>
 
         {!selectedMember ? (
@@ -63,14 +63,14 @@ export const Team = ({teamData}) => {
               {teamData.length > 0 && teamData.map((member:any, idx:any) => {
                 const img = JSON.parse(member.picture)
                 return(
-                  <div key={idx} className={`bg-[#121416] border border-[#1f1f1f] rounded-xl p-6 shadow-md ${classMap.hoverAnimate()}`}>
+                  <div key={idx} className={`bg-[#121416] border border-[#1f1f1f] rounded-xl shadow-md ${classMap.hoverAnimate()}`}>
                     <img
                       src={img[0].url}
                       alt={member.name}
                       className="w-full h-64 object-cover rounded-lg mb-4"
                     />
                     <h3 className="text-xl font-semibold text-[#19e68c]">{member.name}</h3>
-                    <p className="text-sm text-gray-400">{member.role}</p>
+                    <h6 className="text-sm text-gray-400">{member.role}</h6>
 
                     <div className="flex gap-3 justify-center mt-4">
                       {(JSON.parse(member.links) as any[]).map((s: any, i: any) => {
@@ -89,7 +89,7 @@ export const Team = ({teamData}) => {
                     </div>
 
                     <button
-                      className="mt-4 text-gray-300 inline-block text-sm px-4 py-2 border border-[#19e68c] rounded hover:bg-[#19e68c] hover:text-black transition"
+                      className={`${classMap.button('','','','text-sm')}`}
                       onClick={() => setSelectedMember(member)}
                       style={{ cursor: "pointer" }}
                     >
@@ -102,10 +102,10 @@ export const Team = ({teamData}) => {
           </Fade>
         ) : (
           <Fade delay={100} triggerOnce>
-            <div className="bg-[#111314] border border-[#1f1f1f] rounded-xl p-10 max-w-3xl mx-auto text-left relative">
+            <div className="bg-[#111314] border border-[#1f1f1f] rounded-xl p-2 max-w-3xl mx-auto text-left relative">
               <button
                 onClick={handleBack}
-                className="absolute top-4 right-4 text-sm text-gray-300 hover:bg-[#19e68c] hover:text-black border border-gray-600 px-3 py-1 rounded"
+                className={`${classMap.button('','','','text-sm', 'left')}`}
                 style={{ cursor: "pointer" }}
               >
                 ← Back
@@ -116,7 +116,7 @@ export const Team = ({teamData}) => {
                 className="w-40 h-40 object-cover rounded-full mx-auto mb-6"
               />
               <h3 className="text-3xl font-bold text-center text-[#19e68c] mb-2">{selectedMember.name}</h3>
-              <p className="text-center text-gray-400 mb-4">{selectedMember.role}</p>
+              <h6 className="text-center text-gray-400 mb-4">{selectedMember.role}</h6>
               <p className="text-gray-300 leading-relaxed text-center">{selectedMember.bio}</p>
               <div className="flex justify-center gap-4 mt-6">
                 {(JSON.parse(selectedMember.links) as any[]).map((s,i) => {

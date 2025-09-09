@@ -14,6 +14,7 @@ export const advisorName = import.meta.env.VITE_ADVISOR_NAME || 'Phi Advisor';
 
 export const appUrl =
   import.meta.env.VITE_URL || 'https://phifinance.tech';
+  // import.meta.env.VITE_URL || 'http://localhost/phi/public';
 export const advisorUrl =
   import.meta.env.VITE_ADVISOR_URL || 'https://phifinance.tech/advisor';
 

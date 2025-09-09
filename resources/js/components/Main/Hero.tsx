@@ -5,19 +5,19 @@ import { classMap } from '../Tools/Misc';
 
 export const Hero = () => {
   return (
-    <section className="min-h-screen bg-[#0d0f11] text-white flex items-center px-6 md:px-12">
+    <section className="min-h-screen bg-[#0d0f11] flex items-center px-3 md:px-2">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-24 md:py-32">
         {/* Text Content */}
         <Fade direction="up" cascade>
-          <div className="space-y-6">
+          <div className="">
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-[#00d2ff]">
-              Build the Web3 Future with
-              <br />
-              <span className="text-[#00ffb3]">PhiFinance</span>
+              <h1 className="text-[#00ffb3] inline">PhiFinance is</h1><br/>
+              EMPOWERING<br/>
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 max-w-xl">
-              Accelerate your startup in the decentralized economy. From funding to incubation, we provide everything you need to launch and scale your Web3 venture.
-            </p>
+            <h2 className="text-3xl md:text-5xl font-extrabold leading-tight text-[#00d2ff]">WEB3 INNOVATION</h2>
+            <h6 className="text-lg md:text-xl text-gray-300 max-w-xl">
+              PhiFinance - Your Trusted Partners For Web3 Incubation
+            </h6>
             {/* <div className="flex flex-wrap gap-4 pt-4">
               <Link
                 href="/get-started"

@@ -4,15 +4,15 @@ import { classMap } from '../Tools/Misc';
 
 export const About = () => {
   return (
-    <section className="bg-[#0d0f11] text-white py-24 px-6 md:px-12">
+    <section className="bg-[#0d0f11] text-white py-10 px-3 md:px-10">
       <div className="max-w-6xl mx-auto text-center">
         <Fade direction="up" triggerOnce>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#00d2ff]">
-            About <span className="text-[#00ffb3]">PhiFinance</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 text-[#00d2ff]">
+            About <h2 className="text-[#00ffb3] inline">PhiFinance</h2>
           </h2>
-          <p className="text-gray-400 max-w-3xl mx-auto mb-16">
+          <h6 className="text-gray-400 max-w-3xl mx-auto mb-5">
             The launchpad empowering Web3 innovators to build and scale the future of decentralized technology.
-          </p>
+          </h6>
         </Fade>
       </div>
 
@@ -30,21 +30,26 @@ export const About = () => {
 
         {/* Right Side – Text */}
         <Fade triggerOnce direction="right">
-          <div>
+          <div className='p-2'>
             <p className="text-lg text-gray-300 leading-relaxed">
-              Built on the principles of innovation, transparency, and growth, we empower bold
-              ideas and transform them into real-world blockchain success stories.
+              PHI FINANCE is a forward-thinking startup incubator at the
+              intersection of tech, web3, crypto, blockchain, and DeFi.
             </p>
             <p className="mt-6 text-gray-300">
-              From incubation to investor connection, our focus remains on long-term value,
-              strategic infrastructure, and building ecosystems where both startups and investors
-              thrive.
+              We empower the next generation of founders by providing tailored
+              support, strategic mentorship, and vital resources to help early
+              stage Startups scale in the decentralized world.
             </p>
             <p className="mt-6 text-gray-300">
-              At PHI, we’re dedicated to advancing the Web3.0 ecosystem through innovation, empowerment, and strategic growth. Our dual focus—PHI Incubator and PHI Finance—creates a powerful support system for emerging startups and visionary founders. PHI Incubator empowers Web3.0 innovators with secure, comprehensive incubation services, connecting them to resources, mentorship, and investors who share our commitment to a thriving decentralized economy.
+              Our mission is to nurture innovation and drive adoption in the
+              Web3 space, bridging the gap between groundbreaking ideas
+              and sustainable execution.
             </p>
             <p className='mt-6 text-gray-300'>
-              Meanwhile, PHI Finance enhances this journey by leveraging networks, protocols, and financial expertise to fuel both founder and investor success. Together, we’re building a future where every pioneering project in DeFi, NFTs, and the metaverse can redefine global digital ecosystems.
+              Whether you're building the next
+              DeFi protocol, blockchain infrastructure, or Web3 platform, PHI
+              FINANCE offers the network, guidance, and tools to help you
+              thrive
             </p>
           </div>
         </Fade>

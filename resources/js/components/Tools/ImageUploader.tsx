@@ -3,7 +3,7 @@ import axios from "axios";
 import { FaPlusCircle } from "react-icons/fa";
 
 const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/dxsohuly2/image/upload";
-const CLOUDINARY_UPLOAD_PRESET = "startups_pitch_decks";
+const CLOUDINARY_UPLOAD_PRESET = "admin_uploads";
 const CLOUDINARY_USERNAME = "dxsohuly2";
 
 interface ImageUploaderProps {

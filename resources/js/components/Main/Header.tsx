@@ -3,6 +3,7 @@ import { appUrl } from '@/app';
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
+import { classMap } from '../Tools/Misc';
 
 
 export const Header = () => {
@@ -28,7 +29,7 @@ export const Header = () => {
         <div className="hidden md:flex">
           <Link
             href={appUrl + '/under-construction'}
-            className="bg-[#00ffb3] text-black px-4 py-2 rounded-lg font-medium hover:bg-[#00d2ff] transition"
+            className={`${classMap.button()}`}
           >
             Launch App
           </Link>
@@ -43,7 +44,7 @@ export const Header = () => {
         <div className="md:hidden">
           <Link
             href={appUrl + '/under-construction'}
-            className="bg-[#00ffb3] text-black px-4 py-2 rounded-lg font-medium hover:bg-[#00d2ff] transition"
+            className={`${classMap.button()}`}
           >
             Launch App
           </Link>
@@ -59,7 +60,7 @@ export const Header = () => {
           <Link href="/contact" className="block hover:text-[#00ffb3]">Contact</Link>
           <Link
             href={appUrl + '/under-construction'}
-            className="inline-block mt-2 bg-[#00ffb3] text-black px-4 py-2 rounded-lg font-medium hover:bg-[#00d2ff] transition"
+            className={`${classMap.button()}`}
           >
             Launch App
           </Link>
